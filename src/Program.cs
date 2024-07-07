@@ -1,5 +1,4 @@
-﻿
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
     internal class Program
     {
@@ -10,28 +9,42 @@ namespace ConsoleApp1
             int quant = int.Parse(Console.ReadLine());
             int[] vetor = new int[quant];
 
-            for (int i = 0; i >= 0; i++) {
-                Console.WriteLine($"Digite o {i+1}º número: ");
-                int n1 = int.Parse(Console.ReadLine());
-                vetor[i] = n1;
+            for (int i = 0; i < quant; i++)
+            {
+                try
+                {
+                    Console.WriteLine($"Digite o {i + 1}º número: ");
+                    int n1 = int.Parse(Console.ReadLine());
+                    vetor[i] = n1;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Erro: entrada inválida. Por favor, digite um número.");
+                    i--;
+                    continue;
+                }
 
                 System.Console.WriteLine("Quer digitar mais um número? (s/n)");
                 System.Console.WriteLine($"Tamanho do vetor: {quant}");
                 System.Console.WriteLine($"Números digitados: {i + 1}");
 
-                if (Console.ReadLine().ToUpper() == "S") {
+                string resposta = Console.ReadLine().ToUpper();
+                if (resposta == "S")
+                {
                     continue;
                 }
-                else if (Console.ReadLine().ToUpper() == "N") {
+                else if (resposta == "N")
+                {
                     break;
                 }
-                else {
-                    System.Console.WriteLine("Digite um valor válido");
-                    continue;
+                else
+                {
+                    System.Console.WriteLine("Digite um valor válido.");
+                    i--;
                 }
             }
+
             Console.WriteLine(calc.CalcularMedia(quant, vetor));
-            
         }
     }
 }
