@@ -2,14 +2,20 @@ namespace ConsoleApp1
 {
     public class Average
     {
-        public int CalcularMedia(int quant, int[] numbers) {
-            int result = 0;
-            foreach (var number in numbers) 
+        public double CalcularMedia(double[] numeros)
+        {
+            if (numeros == null || numeros.Length == 0)
             {
-                result += number;
+                throw new ArgumentException("O array de números não pode ser nulo ou vazio.");
             }
-            
-            return result / quant;
+
+            double soma = 0;
+            foreach (var numero in numeros)
+            {
+                soma += numero;
+            }
+
+            return soma / numeros.Length;
         }
     }
 }
